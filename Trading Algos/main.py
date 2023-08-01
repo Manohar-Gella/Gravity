@@ -1,48 +1,33 @@
-import pandas as pd
-import yfinance as yf
+import turtle
 
-# Define the moving average crossover strategy
-def moving_average_crossover_strategy(stock_symbol, short_window, long_window):
-    # Download historical stock data
-    data = yf.download(stock_symbol, start='2010-01-01', end='2022-12-31')
-    
-    # Calculate short-term moving average
-    data['Short_MA'] = data['Close'].rolling(window=short_window).mean()
-    
-    # Calculate long-term moving average
-    data['Long_MA'] = data['Close'].rolling(window=long_window).mean()
-    
-    # Initialize the position
-    position = None
-    
-    # Initialize a list to store the trading signals
-    signals = []
-    
-    # Iterate over the data
-    for i in range(len(data)):
-        # Generate buy signal
-        if data['Short_MA'][i] > data['Long_MA'][i] and position != 'Buy':
-            signals.append((data.index[i], 'Buy'))
-            position = 'Buy'
-        
-        # Generate sell signal
-        elif data['Short_MA'][i] < data['Long_MA'][i] and position != 'Sell':
-            signals.append((data.index[i], 'Sell'))
-            position = 'Sell'
-        
-        # No action
-        else:
-            signals.append((data.index[i], 'Hold'))
-    
-    return signals
+def draw_canvas():
+    # Create a turtle object
+    t = turtle.Turtle()
 
-# Example usage
-symbol = 'AAPL'  # Apple stock
-short_window = 50  # Short-term moving average window
-long_window = 200  # Long-term moving average window
+    # Set the speed of the turtle (1 to 10, 1 being the slowest)
+    t.speed(1)
 
-signals = moving_average_crossover_strategy(symbol, short_window, long_window)
+    # Draw a square
+    for _ in range(4):
+        t.forward(100)  # Move the turtle forward by 100 units
+        t.left(90)      # Turn the turtle left by 90 degrees
 
-# Print the trading signals
-for signal in signals:
-    print(signal)
+    # Draw a circle
+    t.penup()         # Lift the pen up (don't draw while moving)
+    t.goto(150, 0)    # Move the turtle to the right
+    t.pendown()       # Put the pen down (start drawing again)
+    t.circle(50)      # Draw a circle with a radius of 50 units
+
+    # Draw a triangle
+    t.penup()
+    t.goto(-150, -100)
+    t.pendown()
+    for _ in range(3):
+        t.forward(100)
+        t.left(120)
+
+    # Close the canvas when clicked
+    turtle.done()
+
+if __name__ == "__main__":
+    draw_canvas()
