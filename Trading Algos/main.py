@@ -1,33 +1,46 @@
-import turtle
+import tkinter as tk
 
-def draw_canvas():
-    # Create a turtle object
-    t = turtle.Turtle()
+def submit_form():
+    # Retrieve form data
+    name = entry_name.get()
+    age = entry_age.get()
+    grade = entry_grade.get()
 
-    # Set the speed of the turtle (1 to 10, 1 being the slowest)
-    t.speed(1)
+    # Do something with the data (e.g., store it in a database, print it)
+    print(f"Name: {name}, Age: {age}, Grade: {grade}")
 
-    # Draw a square
-    for _ in range(4):
-        t.forward(100)  # Move the turtle forward by 100 units
-        t.left(90)      # Turn the turtle left by 90 degrees
+    # Clear form fields
+    entry_name.delete(0, tk.END)
+    entry_age.delete(0, tk.END)
+    entry_grade.delete(0, tk.END)
 
-    # Draw a circle
-    t.penup()         # Lift the pen up (don't draw while moving)
-    t.goto(150, 0)    # Move the turtle to the right
-    t.pendown()       # Put the pen down (start drawing again)
-    t.circle(50)      # Draw a circle with a radius of 50 units
+# Create the main application window
+root = tk.Tk()
+root.title("Puyon GUI School Form")
 
-    # Draw a triangle
-    t.penup()
-    t.goto(-150, -100)
-    t.pendown()
-    for _ in range(3):
-        t.forward(100)
-        t.left(120)
+# Form Labels
+label_name = tk.Label(root, text="Name:")
+label_name.pack()
 
-    # Close the canvas when clicked
-    turtle.done()
+label_age = tk.Label(root, text="Age:")
+label_age.pack()
 
-if __name__ == "__main__":
-    draw_canvas()
+label_grade = tk.Label(root, text="Grade:")
+label_grade.pack()
+
+# Form Entry Fields
+entry_name = tk.Entry(root)
+entry_name.pack()
+
+entry_age = tk.Entry(root)
+entry_age.pack()
+
+entry_grade = tk.Entry(root)
+entry_grade.pack()
+
+# Submit Button
+submit_button = tk.Button(root, text="Submit", command=submit_form)
+submit_button.pack()
+
+# Start the application
+root.mainloop()
