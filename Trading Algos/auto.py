@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import random
 
 def book_tickets(username, password, num_tickets):
     # Replace 'path_to_chromedriver' with the path to your Chrome WebDriver executable
