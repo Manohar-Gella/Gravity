@@ -15,9 +15,10 @@ print(math.sqrt(value))
 a = 20 
 b = 30
 c = 40
-
+# max min fun
 print(min(a, b, c))
 print(max(a, b, c))
+
 
 
 
