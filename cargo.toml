@@ -1,0 +1,4 @@
+[dependencies]
+actix-web = "4.0"
+actix-rt = "2.5"
+sqlx = { version = "0.5", features = ["sqlite"], default-features = false }
